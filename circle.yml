@@ -1,14 +1,18 @@
 machine:
+  python:
+  	version: 2.7.3
   services:
     - docker
 
 dependencies:
+  pre: 
+    - pip install awscli
   override:
-    - docker build -t alanhortz/docker-handson .
+    - docker build -t alanhortz/docker-handson:$CIRCLE_SHA1 .
 
 deployment:
-  hub:
+  elasticbeanstalk:
     branch: master
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - docker push alanhortz/docker-handson
+      - ./deploy.sh $CIRCLE_SHA1
