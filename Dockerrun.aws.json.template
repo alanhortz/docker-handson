@@ -1,7 +1,7 @@
 {
 	"AWSEBDockerrunVersion": "1",
 	"Image": {
-		"Name": "alanhortz/docker-handson",
+		"Name": "alanhortz/docker-handson:<TAG>",
 		"Update": "true"
 	},
 	"Ports": [
